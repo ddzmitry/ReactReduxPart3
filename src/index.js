@@ -3,8 +3,10 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers';
+// component
 import  Post_index from './components/post_index'
 import Posts_new from './components/posts_new'
+import Post_show from './components/post_show'
 // BR I want React look entire URL to tell what to show ! 
 // Route React component that could be rendered inside of ANY components.
 
@@ -20,8 +22,11 @@ ReactDOM.render(
       <BrowserRouter>
         <div>
           <Switch>
-          <Route path="/post/new" component={Posts_new} />  
-           <Route path="/" component={Post_index} />  
+          
+          <Route path="/post/new" component={Posts_new} /> 
+          <Route path="/post/:id" component={Post_show} /> 
+           <Route path="/" component={Post_index} />
+            
           </Switch>
       </div>
       </BrowserRouter>

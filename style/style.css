@@ -2,3 +2,9 @@ form a  {
 
     margin-left: 5px;
 }
+
+li a {
+    margin-left: 8px;
+    height: 10%;
+    align-self: center;
+}

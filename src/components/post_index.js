@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 // grabbinf fetch funciton from actions to fetch data
-import {fetchPost} from '../actions';
+import {fetchPosts} from '../actions';
 
 import _ from 'lodash';
 
@@ -15,7 +15,10 @@ class Post extends Component {
 
             return (
 
-                <li key={post.id} className="list-group-item">{post.title}</li>
+                <li id ={post.id} key={post.id} className="list-group-item">{post.title}
+
+                        <Link className="btn btn-primary" to={`post/${post.id}`}> See full </Link>
+                </li>
             )
 
         })
@@ -27,7 +30,7 @@ class Post extends Component {
         // fetcing data
         this
             .props
-            .fetchPost();
+            .fetchPosts();
 
     }
 
@@ -37,7 +40,7 @@ class Post extends Component {
 
             <div>
             <div className="text-xs-right">
-            
+
                 <Link  to="/post/new" className="btn btn-primary">
                     Add a Post
                 </Link>
@@ -61,4 +64,4 @@ const mapStateToProps = (state) => {
 // wiring up action creator it is like MapDisopatchToProps here we pass action
 // creator we make sure that this funciton is now avaliable in props we can call
 // it and it will return us a new state
-export default connect(mapStateToProps, {fetchPost})(Post);
+export default connect(mapStateToProps, {fetchPosts})(Post);

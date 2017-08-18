@@ -26,6 +26,7 @@ class Posts_new extends Component {
                 <div className="text-help" >
                 {touched ?  error : ''}
                 </div>
+                
            </div>
         )
 

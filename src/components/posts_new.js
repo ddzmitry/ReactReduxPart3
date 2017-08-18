@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
+//actions 
+import {connect} from "react-redux";
+import { createPost } from "../actions"
+// redirection
+import { Redirect } from 'react-router'
 
 class Posts_new extends Component {
 
@@ -28,7 +34,18 @@ class Posts_new extends Component {
     onSubmit(values){
         // this is component that why we add .bind(this)
         // console.log(values) => our object
-
+        // sumbmit to API
+         //submit
+        // this.props.createPost(values).then((SUCCESS)=>{
+        //         console.log(SUCCESS)
+        //     this.props.history.push('/')
+        // });
+             //submit
+        this.props.createPost(values, ()=>{
+                    
+                // redirection
+            this.props.history.push('/')
+        })
     }
 
 // component => return some JSX to show it on the screen 
@@ -56,6 +73,10 @@ class Posts_new extends Component {
                component={this.renderField}
                />
         <button type="submit" className="btn btn-primary"> Submit </button>
+
+          <Link  to="/" className="btn btn-danger">
+                    Cancel
+                </Link>
 
 </form>  
     )
@@ -93,6 +114,10 @@ export default reduxForm({
     // validate will be always called on subnittion of the form
     validate,
     form:'PostsNewForm'
-}) (Posts_new);
+}) (
+    // here we connect our component with reducer 
+   connect(null, {createPost}) (Posts_new)
+
+);
 
 // PostEdit.js 

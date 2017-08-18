@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 //connect function to connect between react and the redux
 import {connect} from 'react-redux';
-
+import { Link } from 'react-router-dom';
 // grabbinf fetch funciton from actions to fetch data
 import {fetchPost} from '../actions';
 
@@ -24,6 +24,7 @@ class Post extends Component {
 
     componentDidMount() {
         // calling the fuunction  that will fill out props
+        // fetcing data
         this
             .props
             .fetchPost();
@@ -35,6 +36,12 @@ class Post extends Component {
         return (
 
             <div>
+            <div className="text-xs-right">
+            
+                <Link  to="/post/new" className="btn btn-primary">
+                    Add a Post
+                </Link>
+            </div>
                 <h3>Posts</h3>
                 <ul className="list-group">
                     {this.renderPost()}

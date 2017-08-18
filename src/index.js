@@ -2,36 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import App from './components/app';
 import reducers from './reducers';
+import  Post_index from './components/post_index'
+import Posts_new from './components/Posts_new'
 // BR I want React look entire URL to tell what to show ! 
 // Route React component that could be rendered inside of ANY components.
 
+//2 We import promise from react promise and apply it to middlewere 
+import promise from 'redux-promise'
 import { BrowserRouter , Route } from 'react-router-dom'
-const createStoreWithMiddleware = applyMiddleware()(createStore);
-class Hello extends React.Component{
+const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
-  render(){
-    return(<div> Hello! World</div>)
-  }
-}
 
-class Bye extends React.Component{
-  
-    render(){
-      return(<div> Good Bye!  </div>)
-    }
-  }
 ReactDOM.render(
-
-
   <Provider store={createStoreWithMiddleware(reducers)}>
-
       <BrowserRouter>
         <div>
-        <h1>HEADER</h1>
-      <Route path={'/hello'} component = {Hello}/>
-      <Route path={'/exit'} component = {Bye}/>
+        <Route path="/" component={Post_index} />  
+        <Route path="/post/new" component={Posts_new} />  
       </div>
       </BrowserRouter>
   </Provider>

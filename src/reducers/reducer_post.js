@@ -1,7 +1,7 @@
 // creatind a reducer 
 import _ from 'lodash';
 
-import {  FETCH_POSTS , FETCH_POST } from '../actions/index';
+import {  FETCH_POSTS , FETCH_POST , DELETE_POST } from '../actions/index';
 
 export default function(state = {}, action) {
 
@@ -22,8 +22,20 @@ export default function(state = {}, action) {
             return {...state, [action.payload.data.id]: action.payload.data};
             break;
 
+        // update current state of the app 
+        case DELETE_POST:
+            // remove the post with particular ID from the local state  
+            return _.omit(state,action.payload);
+            break;
+
+
+        
+
+
         default:
         return state;
+
+
             break;
     }
 }
